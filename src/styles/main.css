@@ -1,0 +1,172 @@
+/* Global Styles */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Rajdhani:wght@300;500;700&family=Inter:wght@300;400;600&display=swap');
+
+:root {
+    --bg-color: #020617;
+    --sidebar-bg: #0f172a;
+    --accent-color: #06b6d4;
+    /* Cyan */
+    --accent-glow: rgba(6, 182, 212, 0.5);
+    --secondary-accent: #8b5cf6;
+    /* Violet */
+    --text-primary: #f1f5f9;
+    --text-secondary: #94a3b8;
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-bg: rgba(15, 23, 42, 0.6);
+}
+
+html,
+body,
+[class*="css"] {
+    font-family: 'Rajdhani', sans-serif;
+    /* Tech-looking font for body */
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+}
+
+h1,
+h2,
+h3,
+.stButton button {
+    font-family: 'Orbitron', sans-serif;
+    /* Sci-fi header font */
+    letter-spacing: 1px;
+}
+
+/* App Background */
+.stApp {
+    background: radial-gradient(circle at top center, #1e293b 0%, #020617 100%);
+    background-attachment: fixed;
+}
+
+/* Sidebar */
+section[data-testid="stSidebar"] {
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--glass-border);
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+section[data-testid="stSidebar"] h1 {
+    background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* Buttons */
+.stButton button {
+    background: transparent;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    border-radius: 4px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.stButton button:hover {
+    background: var(--accent-color);
+    color: #000;
+    box-shadow: 0 0 15px var(--accent-glow);
+    transform: scale(1.02);
+}
+
+.stButton button:active {
+    transform: scale(0.98);
+}
+
+/* Chat Messages */
+.stChatMessage {
+    background-color: transparent;
+    padding: 1rem 0;
+}
+
+[data-testid="stChatMessageContent"] {
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 0 12px 12px 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* User Message Specifics */
+[data-testid="stChatMessage"]:nth-child(odd) [data-testid="stChatMessageContent"] {
+    background: rgba(139, 92, 246, 0.1);
+    /* Slight violet tint */
+    border-left: 3px solid var(--secondary-accent);
+    border-radius: 12px 0 12px 12px;
+}
+
+/* Assistant Message Specifics */
+[data-testid="stChatMessage"]:nth-child(even) [data-testid="stChatMessageContent"] {
+    background: rgba(6, 182, 212, 0.05);
+    /* Slight cyan tint */
+    border-left: 3px solid var(--accent-color);
+}
+
+/* Input Field */
+.stChatInputContainer textarea {
+    background-color: rgba(15, 23, 42, 0.9) !important;
+    border: 1px solid var(--glass-border) !important;
+    color: var(--text-primary) !important;
+    border-radius: 8px !important;
+    font-family: 'Rajdhani', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.stChatInputContainer textarea:focus {
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 0 15px var(--accent-glow) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #020617;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* Delete Button Specifics */
+button[kind="secondary"] {
+    border-color: #ef4444 !important;
+    color: #ef4444 !important;
+}
+
+button[kind="secondary"]:hover {
+    background: #ef4444 !important;
+    color: white !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.5) !important;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.stChatMessage {
+    animation: fadeIn 0.5s ease-out forwards;
+}
